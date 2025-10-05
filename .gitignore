@@ -11,6 +11,8 @@ gradle-app.setting
 *.iws
 *.ipr
 out/
+.vscode/
+.metals/
 
 # Eclipse
 .classpath

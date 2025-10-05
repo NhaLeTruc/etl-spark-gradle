@@ -162,28 +162,28 @@
 ## Phase 3.6: Loader Implementations (TDD: TESTS FIRST)
 
 ### KafkaLoader
-- [ ] T080 [P] Unit test: KafkaLoader writes to Kafka topic (embedded Kafka) in `src/test/scala/com/etl/loader/KafkaLoaderSpec.scala`
-- [ ] T081 [P] Unit test: KafkaLoader validates configuration
-- [ ] T082 [P] Unit test: KafkaLoader serializes to Avro
-- [ ] T083 Implement `KafkaLoader` in `src/main/scala/com/etl/loader/KafkaLoader.scala`
+- [x] T080 [P] Unit test: KafkaLoader writes to Kafka topic (embedded Kafka) in `src/test/scala/com/etl/loader/KafkaLoaderSpec.scala`
+- [x] T081 [P] Unit test: KafkaLoader validates configuration
+- [x] T082 [P] Unit test: KafkaLoader serializes to Avro
+- [x] T083 Implement `KafkaLoader` in `src/main/scala/com/etl/loader/KafkaLoader.scala`
 
 ### PostgresLoader
-- [ ] T084 [P] Unit test: PostgresLoader writes to JDBC (H2) with append mode in `src/test/scala/com/etl/loader/PostgresLoaderSpec.scala`
-- [ ] T085 [P] Unit test: PostgresLoader writes with overwrite mode
-- [ ] T086 [P] Unit test: PostgresLoader writes with upsert mode (ON CONFLICT)
-- [ ] T087 Implement `PostgresLoader` in `src/main/scala/com/etl/loader/PostgresLoader.scala`
+- [x] T084 [P] Unit test: PostgresLoader writes to JDBC (H2) with append mode in `src/test/scala/com/etl/loader/PostgresLoaderSpec.scala`
+- [x] T085 [P] Unit test: PostgresLoader writes with overwrite mode
+- [x] T086 [P] Unit test: PostgresLoader writes with upsert mode (ON CONFLICT)
+- [x] T087 Implement `PostgresLoader` in `src/main/scala/com/etl/loader/PostgresLoader.scala`
 
 ### MySQLLoader
-- [ ] T088 [P] Unit test: MySQLLoader writes to JDBC (H2) with append mode in `src/test/scala/com/etl/loader/MySQLLoaderSpec.scala`
-- [ ] T089 [P] Unit test: MySQLLoader writes with overwrite mode
-- [ ] T090 [P] Unit test: MySQLLoader writes with upsert mode (ON DUPLICATE KEY UPDATE)
-- [ ] T091 Implement `MySQLLoader` in `src/main/scala/com/etl/loader/MySQLLoader.scala`
+- [x] T088 [P] Unit test: MySQLLoader writes to JDBC (H2) with append mode in `src/test/scala/com/etl/loader/MySQLLoaderSpec.scala`
+- [x] T089 [P] Unit test: MySQLLoader writes with overwrite mode
+- [x] T090 [P] Unit test: MySQLLoader writes with upsert mode (ON DUPLICATE KEY UPDATE)
+- [x] T091 Implement `MySQLLoader` in `src/main/scala/com/etl/loader/MySQLLoader.scala`
 
 ### S3Loader
-- [ ] T092 [P] Unit test: S3Loader writes Avro to S3 (local filesystem) in `src/test/scala/com/etl/loader/S3LoaderSpec.scala`
-- [ ] T093 [P] Unit test: S3Loader writes with partitioning
-- [ ] T094 [P] Unit test: S3Loader validates configuration
-- [ ] T095 Implement `S3Loader` in `src/main/scala/com/etl/loader/S3Loader.scala`
+- [x] T092 [P] Unit test: S3Loader writes Avro to S3 (local filesystem) in `src/test/scala/com/etl/loader/S3LoaderSpec.scala`
+- [x] T093 [P] Unit test: S3Loader writes with partitioning
+- [x] T094 [P] Unit test: S3Loader validates configuration
+- [x] T095 Implement `S3Loader` in `src/main/scala/com/etl/loader/S3Loader.scala`
 
 ## Phase 3.7: Data Quality & Lineage (TDD: TESTS FIRST)
 
