@@ -205,13 +205,13 @@
 
 ## Phase 3.8: Configuration & Vault Integration (TDD: TESTS FIRST)
 
-- [ ] T108 [P] Unit test: YAMLConfigParser parses PipelineConfig from YAML in `src/test/scala/com/etl/config/YAMLConfigParserSpec.scala`
-- [ ] T109 [P] Unit test: YAMLConfigParser handles invalid YAML gracefully
-- [ ] T110 Implement `YAMLConfigParser` in `src/main/scala/com/etl/config/YAMLConfigParser.scala`
+- [x] T108 [P] Unit test: YAMLConfigParser parses PipelineConfig from YAML in `src/test/scala/com/etl/config/YAMLConfigParserSpec.scala`
+- [x] T109 [P] Unit test: YAMLConfigParser handles invalid YAML gracefully
+- [x] T110 Implement `YAMLConfigParser` in `src/main/scala/com/etl/config/YAMLConfigParser.scala`
 
-- [ ] T111 [P] Unit test: VaultClient retrieves secrets (mocked Vault) in `src/test/scala/com/etl/vault/VaultClientSpec.scala`
-- [ ] T112 [P] Unit test: VaultClient handles connection failure
-- [ ] T113 Implement `VaultClient` in `src/main/scala/com/etl/vault/VaultClient.scala`
+- [x] T111 [P] Unit test: VaultClient retrieves secrets (mocked Vault) in `src/test/scala/com/etl/vault/VaultClientSpec.scala`
+- [x] T112 [P] Unit test: VaultClient handles connection failure
+- [x] T113 Implement `VaultClient` in `src/main/scala/com/etl/vault/VaultClient.scala`
 
 ## Phase 3.9: Pipeline Orchestration (TDD: TESTS FIRST)
 
