@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <JsonLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"/>
+            </JsonLayout>
+        </Console>
+
+        <RollingFile name="JsonFile" fileName="logs/etl-application.json"
+                     filePattern="logs/etl-application-%d{yyyy-MM-dd}-%i.json.gz">
+            <JsonLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}"/>
+            </JsonLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.etl" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="JsonFile"/>
+        </Logger>
+
+        <!-- Spark logging (reduce verbosity) -->
+        <Logger name="org.apache.spark" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Logger name="org.apache.hadoop" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="JsonFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

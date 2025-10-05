@@ -1,0 +1,48 @@
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+gradle-app.setting
+!gradle-wrapper.properties
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Scala/SBT
+target/
+project/target/
+.cache-main
+.cache-tests
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Spark
+derby.log
+metastore_db/
+spark-warehouse/
+
+# Application specific
+quarantine/
+checkpoints/
+output/
+
+# Secrets (never commit)
+*.key
+*.pem
+secrets/

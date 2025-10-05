@@ -1,0 +1,92 @@
+plugins {
+    id 'scala'
+    id 'application'
+}
+
+group = 'com.etl'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+ext {
+    scalaVersion = '2.12.18'
+    scalaBinaryVersion = '2.12'
+    sparkVersion = '3.5.6'
+    avroVersion = '1.11.3'
+    scalaTestVersion = '3.2.17'
+}
+
+dependencies {
+    // Scala
+    implementation "org.scala-lang:scala-library:${scalaVersion}"
+
+    // Spark Core
+    implementation "org.apache.spark:spark-core_${scalaBinaryVersion}:${sparkVersion}"
+    implementation "org.apache.spark:spark-sql_${scalaBinaryVersion}:${sparkVersion}"
+    implementation "org.apache.spark:spark-streaming_${scalaBinaryVersion}:${sparkVersion}"
+    implementation "org.apache.spark:spark-avro_${scalaBinaryVersion}:${sparkVersion}"
+
+    // Kafka Integration
+    implementation "org.apache.spark:spark-sql-kafka-0-10_${scalaBinaryVersion}:${sparkVersion}"
+
+    // JDBC Drivers
+    implementation 'org.postgresql:postgresql:42.6.0'
+    implementation 'com.mysql:mysql-connector-j:8.1.0'
+
+    // AWS S3
+    implementation 'org.apache.hadoop:hadoop-aws:3.3.4'
+    implementation 'com.amazonaws:aws-java-sdk-bundle:1.12.262'
+
+    // Configuration
+    implementation 'org.yaml:snakeyaml:2.0'
+
+    // Vault
+    implementation 'com.bettercloud:vault-java-driver:5.1.0'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    // Testing
+    testImplementation "org.scalatest:scalatest_${scalaBinaryVersion}:${scalaTestVersion}"
+    testImplementation 'org.scalatestplus:junit-4-13_2.12:3.2.17.0'
+    testImplementation "org.apache.kafka:kafka_${scalaBinaryVersion}:3.5.1"
+    testImplementation 'com.h2database:h2:2.2.224'
+    testImplementation "org.scalamock:scalamock_${scalaBinaryVersion}:5.2.0"
+}
+
+application {
+    mainClass = 'com.etl.Main'
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = [
+        '-deprecation',
+        '-feature',
+        '-unchecked',
+        '-Xlint',
+        '-Ywarn-dead-code',
+        '-Ywarn-numeric-widen'
+    ]
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '7.6.5'
+    distributionType = Wrapper.DistributionType.ALL
+}
