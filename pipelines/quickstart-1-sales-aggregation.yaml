@@ -1,0 +1,33 @@
+pipelineId: sales-aggregation-pipeline
+
+source:
+  type: postgres
+  options:
+    url: jdbc:postgresql://localhost:5432/salesdb
+    driver: org.postgresql.Driver
+    dbtable: sales
+    user: ${VAULT:database/postgres/sales:username}
+    password: ${VAULT:database/postgres/sales:password}
+
+transformations:
+  - name: aggregate-by-category
+    type: aggregation
+    options:
+      groupBy: category
+      aggregations: total_quantity:sum(quantity),total_revenue:sum(price * quantity),avg_price:avg(price),sale_count:count(*)
+
+sink:
+  type: s3
+  options:
+    path: s3://my-bucket/sales-summary/
+    format: parquet
+  writeMode: overwrite
+
+performance:
+  repartition: 4
+  cacheIntermediate: false
+  shufflePartitions: 8
+
+quality:
+  schemaValidation: false
+  nullChecks: []

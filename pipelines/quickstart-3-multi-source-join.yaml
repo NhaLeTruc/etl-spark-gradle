@@ -1,0 +1,58 @@
+pipelineId: multi-source-join-pipeline
+
+# Note: This pipeline demonstrates joining PostgreSQL and Kafka sources
+# In practice, you would run two separate extractions and join the results
+
+# Primary source: Orders from PostgreSQL
+source:
+  type: postgres
+  options:
+    url: jdbc:postgresql://localhost:5432/ordersdb
+    driver: org.postgresql.Driver
+    dbtable: orders
+    user: ${VAULT:database/postgres/orders:username}
+    password: ${VAULT:database/postgres/orders:password}
+
+# Secondary source would be defined separately and joined via transformation
+# For this example, assume product_details are extracted separately from Kafka
+
+transformations:
+  # In production, you would first extract from Kafka into a temp view
+  # then perform the join transformation
+  - name: enrich-with-product-details
+    type: join
+    options:
+      rightDataset: product_details  # Assumes this view exists from separate Kafka extraction
+      joinType: inner
+      joinKeys: product_id
+      selectColumns: order_id,customer_id,product_id,product_name,category,quantity,price,order_date
+
+  - name: calculate-totals
+    type: map
+    options:
+      expressions: total_amount:quantity * price,order_month:month(order_date)
+
+sink:
+  type: s3
+  options:
+    path: s3://my-bucket/enriched-orders/
+    format: parquet
+  writeMode: overwrite
+  partitionBy: order_month
+
+performance:
+  repartition: 8
+  cacheIntermediate: true
+  shufflePartitions: 16
+
+quality:
+  schemaValidation: true
+  schemaPath: schemas/enriched_orders.avsc
+  nullChecks:
+    - column: order_id
+      action: quarantine
+    - column: product_id
+      action: quarantine
+    - column: total_amount
+      action: quarantine
+  quarantinePath: s3://my-bucket/quarantine/enriched-orders/

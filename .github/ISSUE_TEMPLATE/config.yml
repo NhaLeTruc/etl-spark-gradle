@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or Discussion
+    url: https://github.com/etl-spark-gradle/discussions
+    about: Ask questions or discuss ideas with the community
+  - name: Documentation
+    url: https://github.com/etl-spark-gradle/docs
+    about: Read the project documentation
+  - name: Security Vulnerability
+    url: https://github.com/etl-spark-gradle/security/advisories/new
+    about: Report a security vulnerability (private)

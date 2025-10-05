@@ -1,0 +1,162 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: When I try to... I expect... but instead...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Create pipeline with '...'
+        2. Run with command '...'
+        3. Observe error '...'
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: The pipeline should successfully...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Instead, the pipeline...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs
+      description: Please paste relevant error logs or stack traces
+      render: shell
+      placeholder: |
+        Paste error logs here...
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of ETL Spark Gradle are you using?
+      placeholder: v1.0.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where are you running the application?
+      options:
+        - Local development
+        - Docker
+        - Kubernetes
+        - AWS EMR
+        - Azure HDInsight
+        - Databricks
+        - Other (specify in additional context)
+    validations:
+      required: true
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Version
+      description: Output of `java -version`
+      placeholder: openjdk version "11.0.20"
+    validations:
+      required: true
+
+  - type: input
+    id: spark-version
+    attributes:
+      label: Spark Version
+      description: Apache Spark version
+      placeholder: 3.5.6
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which component is affected?
+      multiple: true
+      options:
+        - Extractor (Kafka)
+        - Extractor (PostgreSQL)
+        - Extractor (MySQL)
+        - Extractor (S3)
+        - Transformer (Aggregation)
+        - Transformer (Join)
+        - Transformer (Windowing)
+        - Transformer (Filter)
+        - Transformer (Map)
+        - Loader (Kafka)
+        - Loader (PostgreSQL)
+        - Loader (MySQL)
+        - Loader (S3)
+        - Pipeline Executor
+        - Data Quality
+        - Lineage Tracking
+        - Configuration Parsing
+        - Vault Integration
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Pipeline Configuration
+      description: Please share your pipeline YAML configuration (remove sensitive data)
+      render: yaml
+      placeholder: |
+        pipelineId: my-pipeline
+        source:
+          type: postgres
+          ...
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: This started happening after...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have included all requested information
+          required: true
+        - label: I have removed sensitive data from logs and configurations
+          required: true

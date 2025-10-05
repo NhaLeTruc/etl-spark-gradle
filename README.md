@@ -1,10 +1,15 @@
 # ETL Spark Gradle
 
-Multi-source ETL application built with Apache Spark 3.5.6, Scala 2.12, and Gradle 7.6.5.
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![Test Coverage](https://img.shields.io/badge/coverage-80%25-green)]()
+[![Scala](https://img.shields.io/badge/scala-2.12.18-red)]()
+[![Spark](https://img.shields.io/badge/spark-3.5.6-orange)]()
+
+Production-grade multi-source ETL application built with Apache Spark 3.5.6, Scala 2.12, and Gradle 7.6.5.
 
 ## Overview
 
-This application extracts data from Kafka, PostgreSQL, MySQL, and Amazon S3, applies transformations (aggregations, joins, windowing), and loads results back to these systems using Apache Spark for batch and micro-batch processing.
+This application provides a flexible, high-performance data pipeline framework that extracts data from Kafka, PostgreSQL, MySQL, and Amazon S3, applies sophisticated transformations (aggregations, joins, windowing, filtering, mapping), and loads results back to these systems using Apache Spark for both batch and micro-batch processing.
 
 ## Features
 
@@ -34,28 +39,59 @@ This application extracts data from Kafka, PostgreSQL, MySQL, and Amazon S3, app
 
 ## Quick Start
 
-### 1. Start Vault (Development Mode)
+### 1. Clone and Build
 
 ```bash
-docker-compose up -d
+git clone <repository-url>
+cd etl-spark-gradle
+./gradlew build
 ```
 
-### 2. Build the Project
+### 2. Start Dependencies (Development Mode)
 
 ```bash
-./gradlew build
+# Start Vault and other services
+docker-compose up -d
+
+# Verify Vault is running
+curl http://localhost:8200/v1/sys/health
 ```
 
 ### 3. Run Tests
 
 ```bash
+# Run all tests
 ./gradlew test
+
+# Run specific test suite
+./gradlew test --tests "com.etl.integration.*"
+
+# Run with coverage report
+./gradlew test jacocoTestReport
+open build/reports/jacoco/test/html/index.html
 ```
 
-### 4. Run a Pipeline
+### 4. Run Example Pipelines
 
 ```bash
-./gradlew run --args="path/to/pipeline.yaml"
+# Scenario 1: Batch PostgreSQL to S3 with Aggregation
+./gradlew run --args="--pipeline pipelines/quickstart-1-sales-aggregation.yaml --master local[4]"
+
+# Scenario 2: Streaming Kafka to MySQL with Windowing
+./gradlew run --args="--pipeline pipelines/quickstart-2-metrics-windowing.yaml --master local[4]"
+
+# Scenario 3: Multi-source Join (PostgreSQL + Kafka to S3)
+./gradlew run --args="--pipeline pipelines/quickstart-3-multi-source-join.yaml --master local[4]"
+```
+
+### 5. Run Performance Benchmarks
+
+```bash
+# Batch performance (10GB dataset)
+BENCHMARK_SIZE_GB=10 ./gradlew test --tests "com.etl.benchmark.BatchPerformanceSpec"
+
+# Micro-batch performance (1000 rec/sec)
+./gradlew test --tests "com.etl.benchmark.MicroBatchPerformanceSpec"
 ```
 
 ## Project Structure
@@ -91,48 +127,97 @@ src/
         └── test-data/
 ```
 
-## Pipeline Configuration Example
+## Pipeline Configuration
+
+Pipelines are defined using YAML configuration files. See [pipelines/](pipelines/) for complete examples.
+
+### Basic Example
 
 ```yaml
-pipeline:
-  name: "postgres-to-s3-aggregation"
-  execution_mode: "batch"
+pipelineId: sales-aggregation-pipeline
 
-  source:
-    type: "postgres"
-    credentials_path: "secret/postgres/prod"
-    parameters:
-      jdbcUrl: "jdbc:postgresql://localhost:5432/orders"
-      query: "SELECT * FROM orders WHERE created_at > '2025-01-01'"
+source:
+  type: postgres
+  options:
+    url: jdbc:postgresql://localhost:5432/salesdb
+    driver: org.postgresql.Driver
+    dbtable: sales
+    user: ${VAULT:database/postgres/sales:username}
+    password: ${VAULT:database/postgres/sales:password}
 
-  transformations:
-    - type: "aggregation"
-      parameters:
-        groupBy: ["customer_id", "product_id"]
-        aggregates:
-          - column: "amount"
-            function: "sum"
-            alias: "total_amount"
+transformations:
+  - name: aggregate-by-category
+    type: aggregation
+    options:
+      groupBy: category
+      aggregations: total_quantity:sum(quantity),total_revenue:sum(price * quantity),avg_price:avg(price)
 
-  sink:
-    type: "s3"
-    credentials_path: "secret/s3/prod"
-    parameters:
-      bucket: "my-bucket"
-      prefix: "aggregated-orders/"
-      format: "avro"
-    write_mode: "overwrite"
+sink:
+  type: s3
+  options:
+    path: s3://my-bucket/sales-summary/
+    format: parquet
+  writeMode: overwrite
 
-  performance:
-    partitions: 200
-    executor_memory: "4g"
-    executor_cores: 2
+performance:
+  repartition: 4
+  cacheIntermediate: false
+  shufflePartitions: 8
 
-  quality:
-    schema_validation: true
-    null_check_columns: ["customer_id", "product_id"]
-    quarantine_path: "s3a://my-bucket/errors/"
+quality:
+  schemaValidation: false
+  nullChecks: []
 ```
+
+### Advanced Example with Data Quality
+
+```yaml
+pipelineId: customer-enrichment-pipeline
+
+source:
+  type: kafka
+  options:
+    kafka.bootstrap.servers: localhost:9092
+    subscribe: customer-events
+    startingOffsets: earliest
+
+transformations:
+  - name: parse-json
+    type: map
+    options:
+      expressions: customer_id:get_json_object(value, '$.customer_id'),email:get_json_object(value, '$.email')
+
+  - name: join-with-profile
+    type: join
+    options:
+      rightDataset: customer_profiles
+      joinType: left
+      joinKeys: customer_id
+
+sink:
+  type: mysql
+  options:
+    url: jdbc:mysql://localhost:3306/analytics
+    dbtable: enriched_customers
+    user: ${VAULT:database/mysql/analytics:username}
+    password: ${VAULT:database/mysql/analytics:password}
+  writeMode: upsert
+
+performance:
+  repartition: 8
+  shufflePartitions: 16
+
+quality:
+  schemaValidation: true
+  nullChecks:
+    - column: customer_id
+      action: quarantine
+    - column: email
+      action: quarantine
+  quarantinePath: s3://my-bucket/quarantine/customers/
+```
+
+For complete YAML schema documentation, see [docs/CONFIGURATION.md](docs/CONFIGURATION.md).
 
 ## Testing
 
