@@ -132,32 +132,32 @@
 ## Phase 3.5: Transformer Implementations (TDD: TESTS FIRST)
 
 ### AggregationTransformer
-- [ ] T062 [P] Unit test: AggregationTransformer applies groupBy and aggregations in `src/test/scala/com/etl/transformer/AggregationTransformerSpec.scala`
-- [ ] T063 [P] Unit test: AggregationTransformer validates aggregation config
-- [ ] T064 [P] Unit test: AggregationTransformer updates lineage chain
-- [ ] T065 Implement `AggregationTransformer` in `src/main/scala/com/etl/transformer/AggregationTransformer.scala`
+- [x] T062 [P] Unit test: AggregationTransformer applies groupBy and aggregations in `src/test/scala/com/etl/transformer/AggregationTransformerSpec.scala`
+- [x] T063 [P] Unit test: AggregationTransformer validates aggregation config
+- [x] T064 [P] Unit test: AggregationTransformer updates lineage chain
+- [x] T065 Implement `AggregationTransformer` in `src/main/scala/com/etl/transformer/AggregationTransformer.scala`
 
 ### JoinTransformer
-- [ ] T066 [P] Unit test: JoinTransformer performs inner join in `src/test/scala/com/etl/transformer/JoinTransformerSpec.scala`
-- [ ] T067 [P] Unit test: JoinTransformer performs left/right/full joins
-- [ ] T068 [P] Unit test: JoinTransformer merges lineage metadata
-- [ ] T069 Implement `JoinTransformer` in `src/main/scala/com/etl/transformer/JoinTransformer.scala`
+- [x] T066 [P] Unit test: JoinTransformer performs inner join in `src/test/scala/com/etl/transformer/JoinTransformerSpec.scala`
+- [x] T067 [P] Unit test: JoinTransformer performs left/right/full joins
+- [x] T068 [P] Unit test: JoinTransformer merges lineage metadata
+- [x] T069 Implement `JoinTransformer` in `src/main/scala/com/etl/transformer/JoinTransformer.scala`
 
 ### WindowingTransformer
-- [ ] T070 [P] Unit test: WindowingTransformer applies tumbling windows in `src/test/scala/com/etl/transformer/WindowingTransformerSpec.scala`
-- [ ] T071 [P] Unit test: WindowingTransformer applies sliding windows
-- [ ] T072 [P] Unit test: WindowingTransformer validates window config
-- [ ] T073 Implement `WindowingTransformer` in `src/main/scala/com/etl/transformer/WindowingTransformer.scala`
+- [x] T070 [P] Unit test: WindowingTransformer applies tumbling windows in `src/test/scala/com/etl/transformer/WindowingTransformerSpec.scala`
+- [x] T071 [P] Unit test: WindowingTransformer applies sliding windows
+- [x] T072 [P] Unit test: WindowingTransformer validates window config
+- [x] T073 Implement `WindowingTransformer` in `src/main/scala/com/etl/transformer/WindowingTransformer.scala`
 
 ### FilterTransformer
-- [ ] T074 [P] Unit test: FilterTransformer applies SQL condition in `src/test/scala/com/etl/transformer/FilterTransformerSpec.scala`
-- [ ] T075 [P] Unit test: FilterTransformer validates SQL expression
-- [ ] T076 Implement `FilterTransformer` in `src/main/scala/com/etl/transformer/FilterTransformer.scala`
+- [x] T074 [P] Unit test: FilterTransformer applies SQL condition in `src/test/scala/com/etl/transformer/FilterTransformerSpec.scala`
+- [x] T075 [P] Unit test: FilterTransformer validates SQL expression
+- [x] T076 Implement `FilterTransformer` in `src/main/scala/com/etl/transformer/FilterTransformer.scala`
 
 ### MapTransformer
-- [ ] T077 [P] Unit test: MapTransformer applies column expressions in `src/test/scala/com/etl/transformer/MapTransformerSpec.scala`
-- [ ] T078 [P] Unit test: MapTransformer supports rename and type conversion
-- [ ] T079 Implement `MapTransformer` in `src/main/scala/com/etl/transformer/MapTransformer.scala`
+- [x] T077 [P] Unit test: MapTransformer applies column expressions in `src/test/scala/com/etl/transformer/MapTransformerSpec.scala`
+- [x] T078 [P] Unit test: MapTransformer supports rename and type conversion
+- [x] T079 Implement `MapTransformer` in `src/main/scala/com/etl/transformer/MapTransformer.scala`
 
 ## Phase 3.6: Loader Implementations (TDD: TESTS FIRST)
 
