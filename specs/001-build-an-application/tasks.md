@@ -53,55 +53,55 @@
 
 ## Phase 3.2: Core Entities & Case Classes ⚠️ MUST COMPLETE BEFORE 3.3
 
-- [ ] T011 [P] Create `SourceConfig` case class in `src/main/scala/com/etl/core/SourceConfig.scala`
-- [ ] T012 [P] Create `SinkConfig` case class in `src/main/scala/com/etl/core/SinkConfig.scala`
-- [ ] T013 [P] Create `TransformationConfig` case class in `src/main/scala/com/etl/core/TransformationConfig.scala`
-- [ ] T014 [P] Create `AggregateExpr` case class in `src/main/scala/com/etl/core/AggregateExpr.scala`
-- [ ] T015 [P] Create `PipelineConfig` case class in `src/main/scala/com/etl/core/PipelineConfig.scala`
-- [ ] T016 [P] Create `PerformanceConfig` case class in `src/main/scala/com/etl/core/PerformanceConfig.scala`
-- [ ] T017 [P] Create `QualityConfig` case class in `src/main/scala/com/etl/core/QualityConfig.scala`
-- [ ] T018 [P] Create `ExecutionMetrics` case class in `src/main/scala/com/etl/core/ExecutionMetrics.scala`
-- [ ] T019 [P] Create `LineageMetadata` case class in `src/main/scala/com/etl/core/LineageMetadata.scala`
-- [ ] T020 [P] Create `ValidationResult` case class in `src/main/scala/com/etl/core/ValidationResult.scala`
-- [ ] T021 [P] Create `LoadResult` case class in `src/main/scala/com/etl/core/LoadResult.scala`
-- [ ] T022 [P] Create `RunContext` case class in `src/main/scala/com/etl/core/RunContext.scala`
+- [x] T011 [P] Create `SourceConfig` case class in `src/main/scala/com/etl/core/SourceConfig.scala`
+- [x] T012 [P] Create `SinkConfig` case class in `src/main/scala/com/etl/core/SinkConfig.scala`
+- [x] T013 [P] Create `TransformationConfig` case class in `src/main/scala/com/etl/core/TransformationConfig.scala`
+- [x] T014 [P] Create `AggregateExpr` case class in `src/main/scala/com/etl/core/AggregateExpr.scala`
+- [x] T015 [P] Create `PipelineConfig` case class in `src/main/scala/com/etl/core/PipelineConfig.scala`
+- [x] T016 [P] Create `PerformanceConfig` case class in `src/main/scala/com/etl/core/PerformanceConfig.scala`
+- [x] T017 [P] Create `QualityConfig` case class in `src/main/scala/com/etl/core/QualityConfig.scala`
+- [x] T018 [P] Create `ExecutionMetrics` case class in `src/main/scala/com/etl/core/ExecutionMetrics.scala`
+- [x] T019 [P] Create `LineageMetadata` case class in `src/main/scala/com/etl/core/LineageMetadata.scala`
+- [x] T020 [P] Create `ValidationResult` case class in `src/main/scala/com/etl/core/ValidationResult.scala`
+- [x] T021 [P] Create `LoadResult` case class in `src/main/scala/com/etl/core/LoadResult.scala`
+- [x] T022 [P] Create `RunContext` case class in `src/main/scala/com/etl/core/RunContext.scala`
 
 ## Phase 3.3: Contract Interfaces & Tests ⚠️ TESTS MUST FAIL BEFORE IMPLEMENTATION
 
 ### DataExtractor Contract Tests (WRITE TESTS FIRST)
-- [ ] T023 [P] Contract test: DataExtractor.extract returns valid DataFrame in `src/test/scala/com/etl/core/DataExtractorContractSpec.scala`
-- [ ] T024 [P] Contract test: DataExtractor.validateConfig detects missing parameters
-- [ ] T025 [P] Contract test: DataExtractor.validateConfig accepts valid parameters
-- [ ] T026 [P] Contract test: DataExtractor.extract handles connection failure (mocked)
-- [ ] T027 [P] Contract test: DataExtractor.extract embeds lineage metadata
+- [x] T023 [P] Contract test: DataExtractor.extract returns valid DataFrame in `src/test/scala/com/etl/core/DataExtractorContractSpec.scala`
+- [x] T024 [P] Contract test: DataExtractor.validateConfig detects missing parameters
+- [x] T025 [P] Contract test: DataExtractor.validateConfig accepts valid parameters
+- [x] T026 [P] Contract test: DataExtractor.extract handles connection failure (mocked)
+- [x] T027 [P] Contract test: DataExtractor.extract embeds lineage metadata
 
 ### DataExtractor Interface (AFTER CONTRACT TESTS)
-- [ ] T028 Create `DataExtractor` trait in `src/main/scala/com/etl/core/DataExtractor.scala`
-- [ ] T029 Create `ExtractionException` case class in `src/main/scala/com/etl/core/ExtractionException.scala`
+- [x] T028 Create `DataExtractor` trait in `src/main/scala/com/etl/core/DataExtractor.scala`
+- [x] T029 Create `ExtractionException` case class in `src/main/scala/com/etl/core/ExtractionException.scala`
 
 ### DataTransformer Contract Tests (WRITE TESTS FIRST)
-- [ ] T030 [P] Contract test: DataTransformer.transform returns valid DataFrame in `src/test/scala/com/etl/core/DataTransformerContractSpec.scala`
-- [ ] T031 [P] Contract test: DataTransformer.validateConfig detects schema mismatch
-- [ ] T032 [P] Contract test: DataTransformer.transform is idempotent
-- [ ] T033 [P] Contract test: DataTransformer.transform updates lineage chain
-- [ ] T034 [P] Contract test: DataTransformer.transform handles empty DataFrame
+- [x] T030 [P] Contract test: DataTransformer.transform returns valid DataFrame in `src/test/scala/com/etl/core/DataTransformerContractSpec.scala`
+- [x] T031 [P] Contract test: DataTransformer.validateConfig detects schema mismatch
+- [x] T032 [P] Contract test: DataTransformer.transform is idempotent
+- [x] T033 [P] Contract test: DataTransformer.transform updates lineage chain
+- [x] T034 [P] Contract test: DataTransformer.transform handles empty DataFrame
 
 ### DataTransformer Interface (AFTER CONTRACT TESTS)
-- [ ] T035 Create `DataTransformer` trait in `src/main/scala/com/etl/core/DataTransformer.scala`
-- [ ] T036 Create `TransformationException` case class in `src/main/scala/com/etl/core/TransformationException.scala`
+- [x] T035 Create `DataTransformer` trait in `src/main/scala/com/etl/core/DataTransformer.scala`
+- [x] T036 Create `TransformationException` case class in `src/main/scala/com/etl/core/TransformationException.scala`
 
 ### DataLoader Contract Tests (WRITE TESTS FIRST)
-- [ ] T037 [P] Contract test: DataLoader.load returns success result in `src/test/scala/com/etl/core/DataLoaderContractSpec.scala`
-- [ ] T038 [P] Contract test: DataLoader.validateConfig detects missing parameters
-- [ ] T039 [P] Contract test: DataLoader.validateConfig accepts valid parameters
-- [ ] T040 [P] Contract test: DataLoader.load handles write failure (mocked)
-- [ ] T041 [P] Contract test: DataLoader.load is idempotent (upsert mode)
-- [ ] T042 [P] Contract test: DataLoader.load append mode adds records
-- [ ] T043 [P] Contract test: DataLoader.load overwrite mode replaces data
+- [x] T037 [P] Contract test: DataLoader.load returns success result in `src/test/scala/com/etl/core/DataLoaderContractSpec.scala`
+- [x] T038 [P] Contract test: DataLoader.validateConfig detects missing parameters
+- [x] T039 [P] Contract test: DataLoader.validateConfig accepts valid parameters
+- [x] T040 [P] Contract test: DataLoader.load handles write failure (mocked)
+- [x] T041 [P] Contract test: DataLoader.load is idempotent (upsert mode)
+- [x] T042 [P] Contract test: DataLoader.load append mode adds records
+- [x] T043 [P] Contract test: DataLoader.load overwrite mode replaces data
 
 ### DataLoader Interface (AFTER CONTRACT TESTS)
-- [ ] T044 Create `DataLoader` trait in `src/main/scala/com/etl/core/DataLoader.scala`
-- [ ] T045 Create `LoadException` case class in `src/main/scala/com/etl/core/LoadException.scala`
+- [x] T044 Create `DataLoader` trait in `src/main/scala/com/etl/core/DataLoader.scala`
+- [x] T045 Create `LoadException` case class in `src/main/scala/com/etl/core/LoadException.scala`
 
 ## Phase 3.4: Extractor Implementations (TDD: TESTS FIRST)
 
