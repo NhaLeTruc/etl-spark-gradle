@@ -187,21 +187,21 @@
 
 ## Phase 3.7: Data Quality & Lineage (TDD: TESTS FIRST)
 
-- [ ] T096 [P] Unit test: SchemaValidator validates Avro schema in `src/test/scala/com/etl/quality/SchemaValidatorSpec.scala`
-- [ ] T097 [P] Unit test: SchemaValidator detects schema violations
-- [ ] T098 Implement `SchemaValidator` in `src/main/scala/com/etl/quality/SchemaValidator.scala`
+- [x] T096 [P] Unit test: SchemaValidator validates Avro schema in `src/test/scala/com/etl/quality/SchemaValidatorSpec.scala`
+- [x] T097 [P] Unit test: SchemaValidator detects schema violations
+- [x] T098 Implement `SchemaValidator` in `src/main/scala/com/etl/quality/SchemaValidator.scala`
 
-- [ ] T099 [P] Unit test: QuarantineWriter writes invalid records with diagnostics in `src/test/scala/com/etl/quality/QuarantineWriterSpec.scala`
-- [ ] T100 [P] Unit test: QuarantineWriter formats error metadata
-- [ ] T101 Implement `QuarantineWriter` in `src/main/scala/com/etl/quality/QuarantineWriter.scala`
+- [x] T099 [P] Unit test: QuarantineWriter writes invalid records with diagnostics in `src/test/scala/com/etl/quality/QuarantineWriterSpec.scala`
+- [x] T100 [P] Unit test: QuarantineWriter formats error metadata
+- [x] T101 Implement `QuarantineWriter` in `src/main/scala/com/etl/quality/QuarantineWriter.scala`
 
-- [ ] T102 [P] Unit test: LineageTracker embeds lineage metadata in `src/test/scala/com/etl/lineage/LineageTrackerSpec.scala`
-- [ ] T103 [P] Unit test: LineageTracker updates transformation chain
-- [ ] T104 Implement `LineageTracker` in `src/main/scala/com/etl/lineage/LineageTracker.scala`
+- [x] T102 [P] Unit test: LineageTracker embeds lineage metadata in `src/test/scala/com/etl/lineage/LineageTrackerSpec.scala`
+- [x] T103 [P] Unit test: LineageTracker updates transformation chain
+- [x] T104 Implement `LineageTracker` in `src/main/scala/com/etl/lineage/LineageTracker.scala`
 
-- [ ] T105 [P] Unit test: DataQualityChecker validates null columns in `src/test/scala/com/etl/quality/DataQualityCheckerSpec.scala`
-- [ ] T106 [P] Unit test: DataQualityChecker calculates quality metrics (null rate, duplicate rate)
-- [ ] T107 Implement `DataQualityChecker` in `src/main/scala/com/etl/quality/DataQualityChecker.scala`
+- [x] T105 [P] Unit test: DataQualityChecker validates null columns in `src/test/scala/com/etl/quality/DataQualityCheckerSpec.scala`
+- [x] T106 [P] Unit test: DataQualityChecker calculates quality metrics (null rate, duplicate rate)
+- [x] T107 Implement `DataQualityChecker` in `src/main/scala/com/etl/quality/DataQualityChecker.scala`
 
 ## Phase 3.8: Configuration & Vault Integration (TDD: TESTS FIRST)
 
