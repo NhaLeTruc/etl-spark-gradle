@@ -215,22 +215,22 @@
 
 ## Phase 3.9: Pipeline Orchestration (TDD: TESTS FIRST)
 
-- [ ] T114 [P] Unit test: PipelineExecutor executes batch pipeline in `src/test/scala/com/etl/pipeline/PipelineExecutorSpec.scala`
-- [ ] T115 [P] Unit test: PipelineExecutor executes micro-batch pipeline
-- [ ] T116 [P] Unit test: PipelineExecutor handles extraction failure
-- [ ] T117 [P] Unit test: PipelineExecutor handles transformation failure
-- [ ] T118 [P] Unit test: PipelineExecutor handles load failure
-- [ ] T119 [P] Unit test: PipelineExecutor collects execution metrics
-- [ ] T120 Implement `PipelineExecutor` in `src/main/scala/com/etl/pipeline/PipelineExecutor.scala`
+- [x] T114 [P] Unit test: PipelineExecutor executes batch pipeline in `src/test/scala/com/etl/pipeline/PipelineExecutorSpec.scala`
+- [x] T115 [P] Unit test: PipelineExecutor executes micro-batch pipeline
+- [x] T116 [P] Unit test: PipelineExecutor handles extraction failure
+- [x] T117 [P] Unit test: PipelineExecutor handles transformation failure
+- [x] T118 [P] Unit test: PipelineExecutor handles load failure
+- [x] T119 [P] Unit test: PipelineExecutor collects execution metrics
+- [x] T120 Implement `PipelineExecutor` in `src/main/scala/com/etl/pipeline/PipelineExecutor.scala`
 
-- [ ] T121 [P] Unit test: ExtractorRegistry resolves extractor by type in `src/test/scala/com/etl/pipeline/ExtractorRegistrySpec.scala`
-- [ ] T122 Implement `ExtractorRegistry` in `src/main/scala/com/etl/pipeline/ExtractorRegistry.scala`
+- [x] T121 [P] Unit test: ExtractorRegistry resolves extractor by type in `src/test/scala/com/etl/pipeline/ExtractorRegistrySpec.scala`
+- [x] T122 Implement `ExtractorRegistry` in `src/main/scala/com/etl/pipeline/ExtractorRegistry.scala`
 
-- [ ] T123 [P] Unit test: TransformerRegistry resolves transformer by type in `src/test/scala/com/etl/pipeline/TransformerRegistrySpec.scala`
-- [ ] T124 Implement `TransformerRegistry` in `src/main/scala/com/etl/pipeline/TransformerRegistry.scala`
+- [x] T123 [P] Unit test: TransformerRegistry resolves transformer by type in `src/test/scala/com/etl/pipeline/TransformerRegistrySpec.scala`
+- [x] T124 Implement `TransformerRegistry` in `src/main/scala/com/etl/pipeline/TransformerRegistry.scala`
 
-- [ ] T125 [P] Unit test: LoaderRegistry resolves loader by type in `src/test/scala/com/etl/pipeline/LoaderRegistrySpec.scala`
-- [ ] T126 Implement `LoaderRegistry` in `src/main/scala/com/etl/pipeline/LoaderRegistry.scala`
+- [x] T125 [P] Unit test: LoaderRegistry resolves loader by type in `src/test/scala/com/etl/pipeline/LoaderRegistrySpec.scala`
+- [x] T126 Implement `LoaderRegistry` in `src/main/scala/com/etl/pipeline/LoaderRegistry.scala`
 
 ## Phase 3.10: Observability (TDD: TESTS FIRST)
 
