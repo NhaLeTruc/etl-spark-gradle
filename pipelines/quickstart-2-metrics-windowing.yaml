@@ -1,0 +1,42 @@
+pipelineId: metrics-windowing-pipeline
+
+source:
+  type: kafka
+  options:
+    kafka.bootstrap.servers: localhost:9092
+    subscribe: metrics-topic
+    startingOffsets: earliest
+
+transformations:
+  - name: parse-json
+    type: map
+    options:
+      expressions: timestamp:cast(get_json_object(value, '$.timestamp') as timestamp),metric_name:get_json_object(value, '$.metric_name'),metric_value:cast(get_json_object(value, '$.value') as double)
+
+  - name: window-aggregation
+    type: windowing
+    options:
+      windowType: tumbling
+      windowDuration: 1 minute
+      timestampColumn: timestamp
+      groupBy: metric_name
+      aggregations: total_events:count(*),avg_value:avg(metric_value),max_value:max(metric_value),min_value:min(metric_value)
+
+sink:
+  type: mysql
+  options:
+    url: jdbc:mysql://localhost:3306/metricsdb
+    driver: com.mysql.cj.jdbc.Driver
+    dbtable: metrics_summary
+    user: ${VAULT:database/mysql/metrics:username}
+    password: ${VAULT:database/mysql/metrics:password}
+  writeMode: append
+
+performance:
+  repartition: 4
+  cacheIntermediate: false
+  shufflePartitions: 8
+
+quality:
+  schemaValidation: false
+  nullChecks: []
