@@ -106,28 +106,28 @@
 ## Phase 3.4: Extractor Implementations (TDD: TESTS FIRST)
 
 ### KafkaExtractor
-- [ ] T046 [P] Unit test: KafkaExtractor extracts from Kafka topic (embedded Kafka) in `src/test/scala/com/etl/extractor/KafkaExtractorSpec.scala`
-- [ ] T047 [P] Unit test: KafkaExtractor validates configuration
-- [ ] T048 [P] Unit test: KafkaExtractor embeds lineage metadata
-- [ ] T049 Implement `KafkaExtractor` in `src/main/scala/com/etl/extractor/KafkaExtractor.scala`
+- [x] T046 [P] Unit test: KafkaExtractor extracts from Kafka topic (embedded Kafka) in `src/test/scala/com/etl/extractor/KafkaExtractorSpec.scala`
+- [x] T047 [P] Unit test: KafkaExtractor validates configuration
+- [x] T048 [P] Unit test: KafkaExtractor embeds lineage metadata
+- [x] T049 Implement `KafkaExtractor` in `src/main/scala/com/etl/extractor/KafkaExtractor.scala`
 
 ### PostgresExtractor
-- [ ] T050 [P] Unit test: PostgresExtractor extracts from JDBC (H2) in `src/test/scala/com/etl/extractor/PostgresExtractorSpec.scala`
-- [ ] T051 [P] Unit test: PostgresExtractor validates configuration
-- [ ] T052 [P] Unit test: PostgresExtractor retrieves credentials from Vault (mocked)
-- [ ] T053 Implement `PostgresExtractor` in `src/main/scala/com/etl/extractor/PostgresExtractor.scala`
+- [x] T050 [P] Unit test: PostgresExtractor extracts from JDBC (H2) in `src/test/scala/com/etl/extractor/PostgresExtractorSpec.scala`
+- [x] T051 [P] Unit test: PostgresExtractor validates configuration
+- [x] T052 [P] Unit test: PostgresExtractor retrieves credentials from Vault (mocked)
+- [x] T053 Implement `PostgresExtractor` in `src/main/scala/com/etl/extractor/PostgresExtractor.scala`
 
 ### MySQLExtractor
-- [ ] T054 [P] Unit test: MySQLExtractor extracts from JDBC (H2) in `src/test/scala/com/etl/extractor/MySQLExtractorSpec.scala`
-- [ ] T055 [P] Unit test: MySQLExtractor validates configuration
-- [ ] T056 [P] Unit test: MySQLExtractor retrieves credentials from Vault (mocked)
-- [ ] T057 Implement `MySQLExtractor` in `src/main/scala/com/etl/extractor/MySQLExtractor.scala`
+- [x] T054 [P] Unit test: MySQLExtractor extracts from JDBC (H2) in `src/test/scala/com/etl/extractor/MySQLExtractorSpec.scala`
+- [x] T055 [P] Unit test: MySQLExtractor validates configuration
+- [x] T056 [P] Unit test: MySQLExtractor retrieves credentials from Vault (mocked)
+- [x] T057 Implement `MySQLExtractor` in `src/main/scala/com/etl/extractor/MySQLExtractor.scala`
 
 ### S3Extractor
-- [ ] T058 [P] Unit test: S3Extractor extracts from S3 (local filesystem) in `src/test/scala/com/etl/extractor/S3ExtractorSpec.scala`
-- [ ] T059 [P] Unit test: S3Extractor validates configuration
-- [ ] T060 [P] Unit test: S3Extractor reads Avro format
-- [ ] T061 Implement `S3Extractor` in `src/main/scala/com/etl/extractor/S3Extractor.scala`
+- [x] T058 [P] Unit test: S3Extractor extracts from S3 (local filesystem) in `src/test/scala/com/etl/extractor/S3ExtractorSpec.scala`
+- [x] T059 [P] Unit test: S3Extractor validates configuration
+- [x] T060 [P] Unit test: S3Extractor reads Avro format
+- [x] T061 Implement `S3Extractor` in `src/main/scala/com/etl/extractor/S3Extractor.scala`
 
 ## Phase 3.5: Transformer Implementations (TDD: TESTS FIRST)
 
